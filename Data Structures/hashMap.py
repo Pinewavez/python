@@ -26,6 +26,13 @@ class HashMap:
             if element[0] == key:
                 return element[1]
 
+    def __delitem__(self, key):
+        h = self.getHash(key)
+        for index, element in enumerate(self.arr[h]):
+            if element[0] == key:
+                del self.arr[h][index]
+
+
 theHash = HashMap(10)
 
 theHash['boy'] = 13
@@ -33,4 +40,6 @@ theHash['girl'] = 15
 theHash['Jack'] = 24
 theHash['Jill'] = 30
 
+print(theHash.arr)
+del theHash['Jack']
 print(theHash.arr)
