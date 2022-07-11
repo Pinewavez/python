@@ -9,8 +9,18 @@ class Tree:
         child.parent = self  # Child is Tree Node and of parent
         self.children.append(child)
 
+    def get_level(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
     def print_tree(self):
-        print(self.data)
+        spaces = " " * self.get_level() * 3
+        prefix = spaces + "|--" if spaces else "" #if spaces is basically same this as if self.parent
+        print(prefix + self.data)
         if self.children:
             for child in self.children:
                 child.print_tree()
